@@ -18,30 +18,31 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-500",
-        scrolled ? "py-4 glass-dark shadow-lg" : "py-8 bg-transparent"
+        "fixed top-0 left-0 w-full z-50 transition-all duration-700",
+        scrolled ? "py-5 glass-dark shadow-2xl backdrop-blur-xl" : "py-10 bg-transparent"
       )}
     >
       <div className="container flex justify-between items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-display font-bold tracking-tighter"
+          className="text-2xl font-display font-black tracking-tighter"
         >
-          Grandes<span className="text-amber-500">Felinos</span>
+          GRANDES<span className="text-amber-500">FELINOS</span>
         </motion.div>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="flex items-center gap-12">
           {["Inicio", "Especies"].map((link, i) => (
             <motion.a
               key={link}
               href={`#${link === "Inicio" ? "" : link.toLowerCase()}`}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="text-sm font-medium hover:text-amber-500 transition-colors uppercase tracking-[0.2em]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 + i * 0.1 }}
+              className="relative text-[10px] font-bold text-white/70 hover:text-white uppercase tracking-[0.4em] transition-colors group"
             >
               {link}
+              <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-amber-500 transition-all duration-300 group-hover:w-full" />
             </motion.a>
           ))}
         </div>
@@ -49,3 +50,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
