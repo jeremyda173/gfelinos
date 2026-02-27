@@ -13,8 +13,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "FaunaRD | Descubre la Fauna de la República Dominicana",
-  description: "Explora las especies únicas y la biodiversidad de la República Dominicana. Vive una experiencia cinematográfica de nuestra fauna.",
+  title: "Grandes Felinos | Depredadores Majestuosos",
+  description: "Una exhibición premium de los felinos más icónicos del mundo. Visuales cinematográficos y datos de conservación.",
 };
 
 export default function RootLayout({
