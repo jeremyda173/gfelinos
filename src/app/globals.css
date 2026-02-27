@@ -3,8 +3,8 @@
 @theme inline {
   --color-background: #0a0a0a;
   --color-foreground: #ffffff;
-  --color-accent: #00ff88;
-  --color-accent-hover: #00cc6e;
+  --color-accent: #f59e0b;
+  --color-accent-hover: #d97706;
 
   --font-sans: "Outfit", sans-serif;
   --font-display: "Playfair Display", serif;
