@@ -97,3 +97,9 @@ body {
   padding-bottom: var(--spacing-section);
 }
 
+.outline-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  color: transparent;
+}
+
+
