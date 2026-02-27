@@ -1,15 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { DRFlag } from "./DRFlag";
-
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,15 +14,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Inicio", href: "#" },
-    { name: "Categorías", href: "#categories" },
-    { name: "Especies", href: "#featured" },
-    { name: "Ecosistemas", href: "#ecosystems" },
-    { name: "Real-time", href: "#dynamic-species" },
-    { name: "Conservación", href: "#conservation" },
-  ];
 
   return (
     <nav
@@ -39,64 +26,26 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-display font-bold tracking-tighter flex items-center gap-3"
+          className="text-2xl font-display font-bold tracking-tighter"
         >
-          <span>Fauna<span className="text-accent">RD</span></span>
-          <DRFlag className="w-8 h-auto rounded-sm shadow-sm" />
+          Grandes<span className="text-amber-500">Felinos</span>
         </motion.div>
 
-
-
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link, i) => (
+          {["Inicio", "Especies"].map((link, i) => (
             <motion.a
-              key={link.name}
-              href={link.href}
+              key={link}
+              href={`#${link === "Inicio" ? "" : link.toLowerCase()}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="text-sm font-medium hover:text-accent transition-colors uppercase tracking-widest"
+              className="text-sm font-medium hover:text-amber-500 transition-colors uppercase tracking-[0.2em]"
             >
-              {link.name}
+              {link}
             </motion.a>
           ))}
         </div>
-
-
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-dark border-t border-white/10"
-          >
-            <div className="flex flex-col p-6 gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium hover:text-accent"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 }
