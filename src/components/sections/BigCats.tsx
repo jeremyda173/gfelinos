@@ -67,7 +67,7 @@ export default function BigCats() {
                     0{i + 1} / Especie
                  </span>
                  <h3 className="text-5xl md:text-8xl font-display font-black mb-6 tracking-tighter">{cat.name}</h3>
-                 <p className="text-amber-500/50 font-mono mb-8 text-xs tracking-widest">{cat.scientific}</p>
+
                  <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-md">
                     {cat.description}
                  </p>
