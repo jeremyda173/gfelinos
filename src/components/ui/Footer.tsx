@@ -2,20 +2,24 @@
 
 import { motion } from "framer-motion";
 import { Instagram, Twitter, Facebook, Mail } from "lucide-react";
+import { DRFlag } from "./DRFlag";
 
 export default function Footer() {
   return (
     <footer className="py-20 border-t border-white/5">
-      <div className="container mx-auto px-6">
+      <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="text-center md:text-left">
-            <div className="text-3xl font-display font-bold mb-4">
-              Fauna<span className="text-accent">RD</span>
+            <div className="text-3xl font-display font-bold mb-4 flex items-center justify-center md:justify-start gap-3">
+              <span>Fauna<span className="text-accent">RD</span></span>
+              <DRFlag className="w-10 h-auto rounded-sm shadow-md" />
             </div>
-            <p className="text-white/40 text-sm max-w-xs uppercase tracking-widest">
-              Orgullosamente Dominicanos 🇩🇴
+            <p className="text-white/40 text-sm max-w-xs uppercase tracking-widest mx-auto md:mx-0 flex items-center justify-center md:justify-start gap-2">
+              Orgullosamente Dominicanos <DRFlag className="w-5 h-auto inline" />
             </p>
           </div>
+
+
 
           <div className="flex gap-6">
             {[Instagram, Twitter, Facebook, Mail].map((Icon, i) => (

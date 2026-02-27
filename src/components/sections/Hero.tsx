@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
+import { DRFlag } from "../ui/DRFlag";
 import { useRef } from "react";
 
 export default function Hero() {
@@ -43,7 +44,10 @@ export default function Hero() {
           className="text-5xl md:text-8xl font-display font-bold mb-8 tracking-tight leading-[1.1]"
         >
           Descubre la Fauna de la <br />
-          <span className="text-accent">República Dominicana</span>
+          <span className="text-secondary flex items-center justify-center gap-4">
+            República Dominicana
+            <DRFlag className="w-16 md:w-24 h-auto rounded-md shadow-xl border border-white/10" />
+          </span>
         </motion.h1>
 
         <motion.p
@@ -65,12 +69,14 @@ export default function Hero() {
         >
           <a
             href="#featured"
-            className="px-12 py-5 bg-accent text-black font-bold rounded-full text-lg hover:bg-accent-hover transition-all inline-block shadow-[0_0_20px_rgba(0,255,136,0.3)] hover:shadow-[0_0_30px_rgba(0,255,136,0.5)] uppercase tracking-widest"
+            className="group relative px-24 py-10 bg-white text-black font-extrabold rounded-full text-2xl transition-all duration-500 hover:tracking-[0.1em] uppercase tracking-[0.2em] overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:shadow-[0_0_80px_rgba(255,255,255,0.4)] flex items-center justify-center hover:bg-accent"
           >
-            Explorar Especies
+            <span className="relative z-10">Explorar Especies</span>
+            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
           </a>
         </motion.div>
       </div>
+
 
 
       {/* Scroll Indicator */}
