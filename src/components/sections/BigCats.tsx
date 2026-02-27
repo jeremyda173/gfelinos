@@ -38,39 +38,43 @@ const bigCats = [
 
 export default function BigCats() {
   return (
-    <section id="especies" className="section-padding bg-black">
+    <section id="especies" className="section-padding bg-black relative">
       <div className="container">
-        <div className="flex flex-col gap-32">
+        <div className="flex flex-col gap-48">
           {bigCats.map((cat, i) => (
             <motion.div
               key={cat.name}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              viewport={{ once: true }}
-              className={`flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-16 md:gap-32`}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-100px" }}
+              className={`flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-20 md:gap-40`}
             >
               {/* Image Container */}
-              <div className="relative w-full md:w-1/2 aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
+              <div className="relative w-full md:w-3/5 aspect-[16/10] rounded-[3rem] overflow-hidden group shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                 <Image
                   src={cat.image}
                   alt={cat.name}
                   fill
-                  className="object-cover transition-transform duration-1000"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </div>
 
               {/* Text Content */}
-              <div className="w-full md:w-1/2 text-center md:text-left">
-                 <span className="text-amber-500 font-bold uppercase tracking-[0.3em] mb-4 inline-block text-xs">
-                    Colección Especies
+              <div className="w-full md:w-2/5 text-center md:text-left flex flex-col items-center md:items-start">
+                 <span className="text-amber-500 font-bold uppercase tracking-[0.5em] mb-4 text-[10px]">
+                    0{i + 1} / Especie
                  </span>
-                 <h3 className="text-4xl md:text-7xl font-display font-bold mb-4">{cat.name}</h3>
-                 <p className="text-white/40 italic font-mono mb-8 text-sm">{cat.scientific}</p>
-                 <p className="text-white/60 text-lg md:text-2xl font-light leading-relaxed mb-10 max-w-xl mx-auto md:mx-0">
+                 <h3 className="text-5xl md:text-8xl font-display font-black mb-6 tracking-tighter">{cat.name}</h3>
+                 <p className="text-amber-500/50 font-mono mb-8 text-xs tracking-widest">{cat.scientific}</p>
+                 <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-md">
                     {cat.description}
                  </p>
-                 <div className="w-20 h-1 bg-amber-500 mx-auto md:mx-0" />
+                 <motion.div 
+                   whileHover={{ width: 100 }}
+                   className="w-24 h-[1px] bg-amber-500 flex-shrink-0" 
+                 />
               </div>
             </motion.div>
           ))}
@@ -79,3 +83,4 @@ export default function BigCats() {
     </section>
   );
 }
+
