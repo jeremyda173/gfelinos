@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DRFlag } from "./DRFlag";
+
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,6 +23,8 @@ export default function Navbar() {
     { name: "Inicio", href: "#" },
     { name: "Categorías", href: "#categories" },
     { name: "Especies", href: "#featured" },
+    { name: "Ecosistemas", href: "#ecosystems" },
+    { name: "Real-time", href: "#dynamic-species" },
     { name: "Conservación", href: "#conservation" },
   ];
 
@@ -35,10 +39,13 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-display font-bold tracking-tighter"
+          className="text-2xl font-display font-bold tracking-tighter flex items-center gap-3"
         >
-          Fauna<span className="text-accent">RD</span>
+          <span>Fauna<span className="text-accent">RD</span></span>
+          <DRFlag className="w-8 h-auto rounded-sm shadow-sm" />
         </motion.div>
+
+
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
@@ -54,14 +61,8 @@ export default function Navbar() {
               {link.name}
             </motion.a>
           ))}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 bg-accent text-black font-bold rounded-full text-sm"
-          >
-            Donar
-          </motion.button>
         </div>
+
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
@@ -91,10 +92,8 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <button className="w-full py-3 bg-accent text-black font-bold rounded-xl mt-2">
-                Donar
-              </button>
             </div>
+
           </motion.div>
         )}
       </AnimatePresence>
