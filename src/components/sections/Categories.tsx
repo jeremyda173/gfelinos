@@ -2,86 +2,103 @@
 
 import { motion } from "framer-motion";
 import { Squirrel, Bird, Shell, Bug } from "lucide-react";
+import Image from "next/image";
 
 const categories = [
   {
     name: "Mamíferos",
-    icon: <Squirrel className="w-8 h-8" />,
+    image: "/images/cat-mammals.png",
+    icon: <Squirrel className="w-6 h-6" />,
     description: "Desde el esquivo Solenodonte hasta las ballenas jorobadas.",
-    color: "from-orange-500/20 to-orange-500/0",
+    color: "accent",
   },
   {
     name: "Aves",
-    icon: <Bird className="w-8 h-8" />,
+    image: "/images/cat-birds.png",
+    icon: <Bird className="w-6 h-6" />,
     description: "Más de 300 especies, incluyendo nuestra nacional Cigua Palmera.",
-    color: "from-blue-500/20 to-blue-500/0",
+    color: "blue-500",
   },
   {
     name: "Reptiles",
-    icon: <Bug className="w-8 h-8" />,
+    image: "/images/cat-reptiles.png",
+    icon: <Bug className="w-6 h-6" />,
     description: "Iguanas rinoceronte y cocodrilos en lagos sagrados.",
-    color: "from-green-500/20 to-green-500/0",
+    color: "green-500",
   },
   {
     name: "Marinos",
-    icon: <Shell className="w-8 h-8" />,
+    image: "/images/cat-marine.png",
+    icon: <Shell className="w-6 h-6" />,
     description: "Manatíes y vida coralina en aguas cristalinas.",
-    color: "from-cyan-500/20 to-cyan-500/0",
+    color: "cyan-500",
   },
 ];
 
 export default function Categories() {
   return (
-    <section id="categories" className="section-padding relative overflow-hidden">
+    <section id="categories" className="section-padding relative overflow-hidden bg-[#050505]">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">Biodiversidad Local</h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            Explora los diferentes grupos que componen nuestro ecosistema único y las maravillas que habitan en cada rincón.
-          </p>
-        </motion.div>
+        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl"
+          >
+            <h2 className="text-4xl md:text-7xl font-display font-bold mb-6">Diversidad Única</h2>
+            <p className="text-white/50 text-xl font-light leading-relaxed">
+              Explora las maravillas de nuestra tierra a través de sus categorías más fascinantes. Cada una guarda tesoros biológicos inigualables.
+            </p>
+          </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category, i) => (
             <motion.div
               key={category.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.1, duration: 0.8 }}
               viewport={{ once: true }}
-              whileHover={{ 
-                y: -10,
-                backgroundColor: "rgba(255, 255, 255, 0.08)",
-                borderColor: "rgba(0, 255, 136, 0.3)" 
-              }}
-              className="glass p-10 rounded-3xl border border-white/5 transition-all duration-500 group cursor-pointer relative overflow-hidden flex flex-col items-center text-center h-full"
+              className="group relative cursor-pointer h-[500px]"
             >
-              <div className={`absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b ${category.color} opacity-30`} />
-              
-              <div className="relative z-10 flex flex-col items-center flex-grow">
-                <div className="mb-8 p-5 rounded-2xl bg-white/5 group-hover:bg-accent group-hover:text-black transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(0,255,136,0.3)]">
-                  {category.icon}
+              <div className="relative h-full w-full rounded-[2rem] overflow-hidden border border-white/5 bg-zinc-900">
+                {/* Background Image */}
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover transition-all duration-1000 group-hover:scale-110 brightness-50 group-hover:brightness-75"
+                />
+                
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                {/* Content */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <div className="p-3 w-fit rounded-xl bg-accent text-black mb-6 transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    {category.icon}
+                  </div>
+                  
+                  <h3 className="text-3xl font-display font-bold mb-3">
+                    {category.name}
+                  </h3>
+                  
+                  <p className="text-white/60 text-sm mb-8 line-clamp-3">
+                    {category.description}
+                  </p>
+
+                  <button className="w-full py-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent hover:text-black hover:border-accent transition-all duration-300">
+                    Explorar
+                  </button>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{category.name}</h3>
-                <p className="text-white/50 text-base leading-relaxed mb-6">
-                  {category.description}
-                </p>
-              </div>
-              <div className="relative z-10 mt-auto w-full pt-6 border-t border-white/5 group-hover:border-accent/30 transition-colors">
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent/0 group-hover:text-accent transition-all duration-500">
-                  Explorar
-                </span>
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
 }
-
